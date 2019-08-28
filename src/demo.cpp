@@ -5,6 +5,8 @@
 #include "libfixmath.h"
 #include "math.h"
 
+SYSTEM_MODE(MANUAL);
+
 const fix16_t testcases[] = {
     // Small numbers
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -39,15 +41,18 @@ const fix16_t testcases[] = {
 
 };
 
+int status = 0;
+
 inline void TEST(fix16_t x)
 {
   if (!x)
   {
-    Serial.println("FAILED");
+    Serial.printlnf("FAILED: (%ld)", x);
+    status = 1;
   }
   else
   {
-    Serial.println("OK");
+    Serial.printlnf("OK: (%ld)", x);
   }
 }
 
@@ -63,11 +68,12 @@ const fix16_t max_delta = 0;
 
 void setup()
 {
+  // Perform unit tests
 
   Serial.begin(115200);
   delay(3000);
 
-  int status = 0;
+  Serial.println("=== libfixmath Test ===");
 
   {
     Serial.println("Testing basic multiplication");
@@ -354,8 +360,11 @@ void setup()
     Serial.print("\n\nSome tests FAILED!\n");
 
   //return status;
+
+  Serial.println("=== Finished tests ===");
 }
 
 void loop()
 {
+  // Nothing done here
 }
