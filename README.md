@@ -1,35 +1,35 @@
 # libfixmath
 
-A Particle project named libfixmath
+The start of a libfixmath Particle library
 
-## Welcome to your project!
+Ported from: https://github.com/PetteriAimonen/libfixmath
 
-Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for libfixmath.
+## Unit testing
 
-#### ```/src``` folder:  
-This is the source folder that contains the firmware files for your project. It should *not* be renamed. 
-Anything that is in this folder when you compile your project will be sent to our compile service and compiled into a firmware binary for the Particle device that you have targeted.
+See src/demo.cpp for the unit tests.
 
-If your application contains multiple files, they should all be included in the `src` folder. If your firmware depends on Particle libraries, those dependencies are specified in the `project.properties` file referenced below.
+## Known Errors
 
-#### ```.ino``` file:
-This file is the firmware that will run as the primary application on your Particle device. It contains a `setup()` and `loop()` function, and can be written in Wiring or C/C++. For more information about using the Particle firmware API to create firmware for your Particle device, refer to the [Firmware Reference](https://docs.particle.io/reference/firmware/) section of the Particle documentation.
+I am currently getting the following liker errors when attempting to build this project for the Photon:
 
-#### ```project.properties``` file:  
-This is the file that specifies the name and version number of the libraries that your project depends on. Dependencies are added automatically to your `project.properties` file when you add a library to a project using the `particle library add` command in the CLI or add a library in the Desktop IDE.
-
-## Adding additional files to your project
-
-#### Projects with multiple sources
-If you would like add additional files to your application, they should be added to the `/src` folder. All files in the `/src` folder will be sent to the Particle Cloud to produce a compiled binary.
-
-#### Projects with external libraries
-If your project includes a library that has not been registered in the Particle libraries system, you should create a new folder named `/lib/<libraryname>/src` under `/<project dir>` and add the `.h`, `.cpp` & `library.properties` files for your library there. Read the [Firmware Libraries guide](https://docs.particle.io/guide/tools-and-features/libraries/) for more details on how to develop libraries. Note that all contents of the `/lib` folder and subfolders will also be sent to the Cloud for compilation.
-
-## Compiling your project
-
-When you're ready to compile your project, make sure you have the correct Particle device target selected and run `particle compile <platform>` in the CLI or click the Compile button in the Desktop IDE. The following files in your project folder will be sent to the compile service:
-
-- Everything in the `/src` folder, including your `.ino` application file
-- The `project.properties` file for your project
-- Any libraries stored under `lib/<libraryname>/src`
+```
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-writer.o): In function `_write_r':
+writer.c:(.text._write_r+0x10): undefined reference to `_write'
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-closer.o): In function `_close_r':
+closer.c:(.text._close_r+0xc): undefined reference to `_close'
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-fstatr.o): In function `_fstat_r':
+fstatr.c:(.text._fstat_r+0xe): undefined reference to `_fstat'
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-isattyr.o): In function `_isatty_r':
+isattyr.c:(.text._isatty_r+0xc): undefined reference to `_isatty'
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-lseekr.o): In function `_lseek_r':
+lseekr.c:(.text._lseek_r+0x10): undefined reference to `_lseek'
+/home/nrobinson/.po-util/bin/gcc-arm-embedded/gcc-arm-none-eabi-5_3-2016q1/bin/../lib/gcc/arm-none-eabi/5.3.1/../../../../arm-none-eabi/lib/armv7-m/libg_nano.a(lib_a-readr.o): In function `_read_r':
+readr.c:(.text._read_r+0x10): undefined reference to `_read'
+collect2: error: ld returned 1 exit status
+../../../build/module.mk:232: recipe for target '/home/nrobinson/projects/libfixmath/target/libfixmath.elf' failed
+make[2]: *** [/home/nrobinson/projects/libfixmath/target/libfixmath.elf] Error 1
+../build/recurse.mk:11: recipe for target 'modules/photon/user-part' failed
+make[1]: *** [modules/photon/user-part] Error 2
+/home/nrobinson/.po-util/src/particle.mk:34: recipe for target 'compile-user' failed
+make: *** [compile-user] Error 2
+```
