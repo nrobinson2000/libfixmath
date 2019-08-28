@@ -195,7 +195,7 @@ void setup()
 #ifndef FIXMATH_NO_OVERFLOW
             if (result != fix16_overflow)
             {
-              printf("\n%ld / %ld overflow not detected!\n", a, b);
+              Serial.printf("\n%ld / %ld overflow not detected!\n", a, b);
               failures++;
             }
 #endif
@@ -249,8 +249,8 @@ void setup()
             continue;
           }
 
-          printf("\n%ld + %ld = %ld\n", a, b, result);
-          printf("%f + %f = %ld\n", fa, fb, fresult);
+          Serial.printf("\n%ld + %ld = %ld\n", a, b, result);
+          Serial.printf("%f + %f = %ld\n", fa, fb, fresult);
           failures++;
         }
       }

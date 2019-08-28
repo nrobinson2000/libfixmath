@@ -4,6 +4,8 @@
     "files.associations": {
         "unordered_map": "cpp",
         "initializer_list": "cpp",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "fix16.h": "c",
+        "ctype.h": "c"
     }
 }
